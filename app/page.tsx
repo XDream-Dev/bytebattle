@@ -447,31 +447,35 @@ export default function Home() {
               <Brain className="h-6 w-6 text-primary" />
               <span className="text-xl font-bold">BYTEBATTLE</span>
             </div>
-            <div className="flex gap-8">
-              <Link
-                href="/about"
-                className="text-muted-foreground hover:text-primary"
+            <div className="flex flex-wrap gap-8 text-muted-foreground">
+              <a
+                href="mailto:nabil.lemriki@gmail.com"
+                className="hover:text-primary transition"
               >
-                About
-              </Link>
-              <Link
-                href="/privacy"
-                className="text-muted-foreground hover:text-primary"
+                nabil.lemriki@gmail.com
+              </a>
+              <a
+                href="tel:+212637101785"
+                className="hover:text-primary transition"
               >
-                Privacy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-muted-foreground hover:text-primary"
+                +212 6 37 10 17 85
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nabil-lemriki"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition"
               >
-                Terms
-              </Link>
-              <Link
-                href="/contact"
-                className="text-muted-foreground hover:text-primary"
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/XDream-Dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition"
               >
-                Contact
-              </Link>
+                GitHub
+              </a>
             </div>
           </div>
           <div className="mt-8 text-center text-muted-foreground text-sm">

@@ -60,7 +60,7 @@ const categories = [
     name: "C#",
     code: "C#",
     description:
-      "Modern, multi-paradigm language developed by Microsoft for .NET with strong support for object-oriented programming.",
+      "Multi-paradigm language developed by Microsoft for .NET with strong support for object-oriented programming.",
     icon: Dumbbell,
     color: "bg-indigo-100 dark:bg-indigo-900",
     iconColor: "text-indigo-500",
