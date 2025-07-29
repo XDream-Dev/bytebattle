@@ -33,11 +33,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build project
+      - name: Build and export static site
         run: pnpm build
-
-      - name: Export static site
-        run: pnpm export
 
       - name: Copy index.html to 404.html (for client-side routing support)
         run: cp out/index.html out/404.html
