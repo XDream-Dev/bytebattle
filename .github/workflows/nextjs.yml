@@ -24,15 +24,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: pnpm
-
-      - name: Enable Corepack and prepare pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-
-      - name: Check pnpm version
-        run: pnpm --version
+          cache: npm
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -40,17 +32,17 @@ jobs:
           path: |
             .next/cache
             node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm ci
 
       - name: Build project and export static site
         run: |
-          pnpm run build
-          pnpm run export
+          npm run build
+          npm run export
 
       - name: Handle 404 for client-side routing
         run: |
