@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy Next.js App
 
 on:
   push:
@@ -16,24 +16,44 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
 
-      - name: Install pnpm
+      - name: Install pnpm globally
         run: npm install -g pnpm
 
-      - name: Install dependencies with pnpm
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            .next/cache
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
         run: pnpm install
 
-      - name: Build
+      - name: Build project
         run: pnpm build
 
-      # Optional if using Next.js static export
       - name: Export static site
         run: pnpm export
 
-      # Optional deploy step (e.g. to GitHub Pages)
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Copy index.html to 404.html (for client-side routing support)
+        run: cp out/index.html out/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          path: out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
