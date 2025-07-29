@@ -18,33 +18,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            .next/cache
-            node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build project and export static site
+      - name: Build and export
         run: |
           npm run build
           npm run export
 
-      - name: Handle 404 for client-side routing
+      - name: Copy 404.html for client-side routing
         run: |
           if [ ! -f out/404.html ]; then
             cp out/index.html out/404.html
