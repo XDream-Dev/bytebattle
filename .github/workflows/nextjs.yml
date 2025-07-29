@@ -26,8 +26,10 @@ jobs:
           node-version: "20"
           cache: pnpm
 
-      - name: Install pnpm globally
-        run: npm install -g pnpm@latest
+      - name: Enable Corepack and prepare pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: Cache dependencies
         uses: actions/cache@v4
