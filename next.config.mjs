@@ -1,17 +1,41 @@
-const nextConfig = {
-  output: "export", // required for static HTML export
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true, // required for export with <Image />
-  },
-  // basePath and assetPrefix ensure proper routing on GitHub Pages
-  basePath: "/bytebattle",
-  assetPrefix: "/bytebattle/",
-};
+name: Deploy to GitHub Pages
 
-export default nextConfig;
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build project
+        run: npm run build
+
+      - name: Export static site
+        run: npx next export
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: out
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
