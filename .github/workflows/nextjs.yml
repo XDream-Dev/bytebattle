@@ -1,4 +1,4 @@
-name: Deploy Next.js Portfolio to GitHub Pages
+name: Deploy Next.js bytebattle to GitHub Pages
 
 on:
   push:
@@ -20,32 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Detect package manager
-        id: detect-pm
-        run: |
-          if [ -f "pnpm-lock.yaml" ]; then
-            echo "manager=pnpm" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=pnpm" >> $GITHUB_OUTPUT
-          elif [ -f "yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=yarn" >> $GITHUB_OUTPUT
-          else
-            echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=ci" >> $GITHUB_OUTPUT
-            echo "runner=npx" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Install pnpm
-        if: steps.detect-pm.outputs.manager == 'pnpm'
-        run: npm install -g pnpm@latest
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: ${{ steps.detect-pm.outputs.manager }}
+          cache: npm
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -58,19 +37,17 @@ jobs:
           path: |
             .next/cache
             node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('**/lock.yaml', '**/package-lock.json', '**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-
 
       - name: Install dependencies
-        run: ${{ steps.detect-pm.outputs.manager }} ${{ steps.detect-pm.outputs.command }}
+        run: npm ci
 
-      - name: Build project
-        run: ${{ steps.detect-pm.outputs.runner }} next build
-
-      # REMOVE THIS EXPORT STEP COMPLETELY
-      # - name: Export static site
-      #   run: ${{ steps.detect-pm.outputs.runner }} next export
+      - name: Build project and export static site
+        run: |
+          npm run build
+          npm run export
 
       - name: Handle 404 for client-side routing
         run: |
