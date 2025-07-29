@@ -1,5 +1,5 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export", // required for static HTML export
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -7,8 +7,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: true, // required for export with <Image />
   },
-}
+  // basePath and assetPrefix ensure proper routing on GitHub Pages
+  basePath: "/bytebattle",
+  assetPrefix: "/bytebattle/",
+};
 
-export default nextConfig
+export default nextConfig;
