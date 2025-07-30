@@ -185,6 +185,60 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Language Carousel Section */}
+        <section className="py-12 bg-background" data-animate>
+          <div className="container mx-auto px-4">
+            <div className="w-full overflow-hidden">
+              {/* Animation Wrapper */}
+              <div
+                className="flex gap-10 whitespace-nowrap text-2xl md:text-3xl font-semibold text-muted-foreground"
+                style={{
+                  animation: "scrollLeft 30s linear infinite",
+                  display: "inline-flex",
+                }}
+              >
+                {[
+                  "JavaScript",
+                  "Python",
+                  "Java",
+                  "C#",
+                  "C++",
+                  "Ruby",
+                  "Go",
+                  "TypeScript",
+                  "JavaScript",
+                  "Python",
+                  "Java",
+                  "C#",
+                  "C++",
+                  "Ruby",
+                  "Go",
+                  "TypeScript",
+                ].map((lang, i) => (
+                  <div
+                    key={i}
+                    className="min-w-max px-4 py-2 bg-card rounded-lg shadow-md hover:scale-105 transition-transform"
+                  >
+                    {lang}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Inline style tag with keyframes */}
+          <style jsx>{`
+            @keyframes scrollLeft {
+              0% {
+                transform: translateX(0%);
+              }
+              100% {
+                transform: translateX(-50%);
+              }
+            }
+          `}</style>
+        </section>
+
         {/* Features Section */}
         <section
           id="features"
