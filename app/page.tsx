@@ -609,12 +609,7 @@ export default function Home() {
               >
                 nabil.lemriki@gmail.com
               </a>
-              <a
-                href="tel:+212637101785"
-                className="hover:text-primary transition"
-              >
-                +212 6 37 10 17 85
-              </a>
+
               <a
                 href="https://www.linkedin.com/in/nabil-lemriki"
                 target="_blank"
