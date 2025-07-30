@@ -399,16 +399,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA Section with Animated Background */}
         <section
           id="cta"
           data-animate
-          className={`py-20 bg-primary text-primary-foreground transition-all duration-1000 ease-out ${
+          className={`relative overflow-hidden py-20 text-primary-foreground transition-all duration-1000 ease-out ${
             visibleSections.has("cta")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-10"
           }`}
         >
+          {/* Animated Gradient Background */}
+          <div className="absolute inset-0 -z-10 animate-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-size-200" />
+
           <div className="container mx-auto px-4 text-center">
             <h2
               className={`text-3xl md:text-4xl font-bold mb-4 transition-all duration-800 ease-out delay-200 ${
@@ -444,6 +447,26 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          {/* Tailwind-style Custom CSS */}
+          <style jsx>{`
+            .animate-gradient {
+              background-size: 200% 200%;
+              animation: gradientShift 10s ease infinite;
+            }
+
+            @keyframes gradientShift {
+              0% {
+                background-position: 0% 50%;
+              }
+              50% {
+                background-position: 100% 50%;
+              }
+              100% {
+                background-position: 0% 50%;
+              }
+            }
+          `}</style>
         </section>
       </main>
 
