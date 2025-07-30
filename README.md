@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="/placeholder.svg?height=120&width=120" alt="BYTEBATTLE Logo" width="120" height="120">
   
   # 🧠 BYTEBATTLE
   
@@ -12,8 +11,10 @@
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
   
-  [🚀 Live Demo](https://bytebattle-quiz.vercel.app) • [📖 Documentation](#documentation) • [🐛 Report Bug](https://github.com/XDream-Dev/bytebattle/issues) • [✨ Request Feature](https://github.com/XDream-Dev/bytebattle/issues)
+  [🚀 Live Demo](https://xdream-dev.github.io/bytebattle/)
 </div>
+
+![BYTEBATTLE Demo](public/BYTEBATTLE-DEMO.webp)
 
 ---
 
