@@ -68,16 +68,6 @@
 
 ---
 
-## 🎯 Demo
-
-### 🖥️ Desktop Experience
-
-![Desktop Demo](/placeholder.svg?height=400&width=800&query=desktop+quiz+interface)
-
-### 📱 Mobile Experience
-
-![Mobile Demo](/placeholder.svg?height=600&width=300&query=mobile+quiz+interface)
-
 ### ✨ Key Interactions
 
 - **Quiz Creation**: Select language, difficulty, and preferences
