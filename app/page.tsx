@@ -149,26 +149,63 @@ export default function Home() {
         <section
           id="hero"
           data-animate
-          className="relative py-16 md:py-32 overflow-hidden"
+          className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-32 overflow-hidden"
         >
           {/* Falling Stars Background */}
           <div className="absolute inset-0 -z-20">
-            {/* stars unchanged */}
             <div className="absolute top-10 left-10 w-1 h-1 bg-white rounded-full animate-pulse opacity-80"></div>
             <div
               className="absolute top-20 right-20 w-1 h-1 bg-accent rounded-full animate-bounce opacity-60"
               style={{ animationDelay: "0.5s" }}
             ></div>
-            {/* ... other stars ... */}
+            <div
+              className="absolute top-32 left-1/4 w-0.5 h-0.5 bg-primary rounded-full animate-pulse opacity-70"
+              style={{ animationDelay: "1s" }}
+            ></div>
+            <div
+              className="absolute top-40 right-1/3 w-1 h-1 bg-white rounded-full animate-bounce opacity-50"
+              style={{ animationDelay: "1.5s" }}
+            ></div>
+            <div
+              className="absolute top-16 left-1/2 w-0.5 h-0.5 bg-accent rounded-full animate-pulse opacity-80"
+              style={{ animationDelay: "2s" }}
+            ></div>
+            <div
+              className="absolute top-60 right-10 w-1 h-1 bg-primary rounded-full animate-bounce opacity-60"
+              style={{ animationDelay: "0.3s" }}
+            ></div>
+            <div
+              className="absolute top-80 left-16 w-0.5 h-0.5 bg-white rounded-full animate-pulse opacity-70"
+              style={{ animationDelay: "2.5s" }}
+            ></div>
+            <div
+              className="absolute top-96 right-1/4 w-1 h-1 bg-accent rounded-full animate-bounce opacity-50"
+              style={{ animationDelay: "3s" }}
+            ></div>
+            <div
+              className="absolute bottom-40 left-1/3 w-0.5 h-0.5 bg-primary rounded-full animate-pulse opacity-80"
+              style={{ animationDelay: "1.2s" }}
+            ></div>
+            <div
+              className="absolute bottom-60 right-16 w-1 h-1 bg-white rounded-full animate-bounce opacity-60"
+              style={{ animationDelay: "0.8s" }}
+            ></div>
+            <div
+              className="absolute bottom-80 left-20 w-0.5 h-0.5 bg-accent rounded-full animate-pulse opacity-70"
+              style={{ animationDelay: "2.8s" }}
+            ></div>
+            <div
+              className="absolute bottom-20 right-1/2 w-1 h-1 bg-primary rounded-full animate-bounce opacity-50"
+              style={{ animationDelay: "1.8s" }}
+            ></div>
           </div>
 
           {/* Glassmorphism Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 -z-10" />
           <div className="absolute inset-0 backdrop-blur-[1px] -z-10" />
 
-          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10 md:gap-12">
-            {/* Text content */}
-            <div className="w-full md:w-1/2 space-y-6 relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start gap-8 md:gap-12">
+            <div className="md:w-1/2 space-y-6 relative z-10 text-left">
               <h1
                 className={`text-3xl sm:text-4xl md:text-6xl font-bold leading-tight transition-all duration-1000 ease-out ${
                   visibleSections.has("hero")
@@ -186,9 +223,8 @@ export default function Home() {
                     : "opacity-0 translate-y-6"
                 }`}
               >
-                BYTEBATTLE generates fresh, challenging questions across various
-                programming languages, adapting to your skill level for a
-                personalized learning experience.
+                Fresh, challenging quizzes in multiple languages tailored to
+                your skill.
               </p>
               <div
                 className={`flex flex-col sm:flex-row gap-4 pt-4 transition-all duration-1000 ease-out delay-400 ${
@@ -200,7 +236,7 @@ export default function Home() {
                 <Link href="/quiz/new" passHref>
                   <Button
                     size="lg"
-                    className="gap-2 backdrop-blur-sm bg-primary/90 hover:bg-primary/80 border border-white/20 w-full sm:w-auto"
+                    className="w-full sm:w-auto gap-2 backdrop-blur-sm bg-primary/90 hover:bg-primary/80 border border-white/20"
                     onClick={() => console.log("Start Quiz button clicked")}
                   >
                     <Zap className="h-5 w-5" />
@@ -211,44 +247,55 @@ export default function Home() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="backdrop-blur-sm bg-white/10 hover:bg-white/20 border border-white/30 w-full sm:w-auto"
+                    className="w-full sm:w-auto backdrop-blur-sm bg-white/10 hover:bg-white/20 border border-white/30"
                   >
                     Explore Languages
                   </Button>
                 </Link>
               </div>
             </div>
-
-            {/* Image/Visual content */}
             <div
-              className={`w-full md:w-1/2 relative z-10 transition-all duration-1200 ease-out delay-300 ${
+              className={`md:w-1/2 w-full max-w-md sm:max-w-lg md:max-w-full relative z-10 transition-all duration-1200 ease-out delay-300 ${
                 visibleSections.has("hero")
                   ? "opacity-100 translate-x-0 scale-100"
                   : "opacity-0 translate-x-8 scale-95"
               }`}
+              style={{ height: "auto", minHeight: "320px" }}
             >
-              <div className="relative w-full max-w-lg h-[300px] sm:h-[400px] bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl overflow-hidden backdrop-blur-md border border-white/20 shadow-2xl mx-auto">
-                {/* floating boxes and brain icon unchanged */}
+              <div className="relative w-full h-[320px] sm:h-[400px] bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl overflow-hidden backdrop-blur-md border border-white/20 shadow-2xl">
                 <div
-                  className={`absolute top-10 left-10 w-36 h-36 bg-white/20 backdrop-blur-md rounded-lg shadow-lg p-4 rotate-6 animate-float border border-white/30 transition-all duration-800 ease-out delay-600 ${
+                  className={`absolute top-10 left-10 w-40 h-40 bg-white/20 backdrop-blur-md rounded-lg shadow-lg p-4 rotate-6 animate-float border border-white/30 transition-all duration-800 ease-out delay-600 ${
                     visibleSections.has("hero")
                       ? "opacity-100 translate-y-0 rotate-6"
                       : "opacity-0 translate-y-4 rotate-12"
                   }`}
                 >
-                  {/* content */}
+                  <div className="h-4 w-32 bg-primary/30 rounded mb-2 backdrop-blur-sm"></div>
+                  <div className="h-3 w-28 bg-primary/30 rounded mb-4 backdrop-blur-sm"></div>
+                  <div className="space-y-2">
+                    <div className="h-3 w-full bg-accent/40 rounded backdrop-blur-sm"></div>
+                    <div className="h-3 w-full bg-accent/40 rounded backdrop-blur-sm"></div>
+                    <div className="h-3 w-full bg-accent/40 rounded backdrop-blur-sm"></div>
+                  </div>
                 </div>
                 <div
-                  className={`absolute bottom-10 right-10 w-44 h-44 bg-white/20 backdrop-blur-md rounded-lg shadow-lg p-4 -rotate-3 animate-bounce-slow border border-white/30 transition-all duration-800 ease-out delay-800 ${
+                  className={`absolute bottom-10 right-10 w-48 h-48 bg-white/20 backdrop-blur-md rounded-lg shadow-lg p-4 -rotate-3 animate-bounce-slow border border-white/30 transition-all duration-800 ease-out delay-800 ${
                     visibleSections.has("hero")
                       ? "opacity-100 translate-y-0 -rotate-3"
                       : "opacity-0 translate-y-4 -rotate-6"
                   }`}
                 >
-                  {/* content */}
+                  <div className="h-4 w-32 bg-primary/30 rounded mb-2 backdrop-blur-sm"></div>
+                  <div className="h-3 w-28 bg-primary/30 rounded mb-4 backdrop-blur-sm"></div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="h-8 w-full bg-accent/40 rounded backdrop-blur-sm"></div>
+                    <div className="h-8 w-full bg-accent/40 rounded backdrop-blur-sm"></div>
+                    <div className="h-8 w-full bg-accent/40 rounded backdrop-blur-sm"></div>
+                    <div className="h-8 w-full bg-accent/40 rounded backdrop-blur-sm"></div>
+                  </div>
                 </div>
                 <div
-                  className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 bg-white/30 backdrop-blur-lg rounded-full shadow-2xl flex items-center justify-center border border-white/40 transition-all duration-1000 ease-out delay-1000 ${
+                  className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/30 backdrop-blur-lg rounded-full shadow-2xl flex items-center justify-center border border-white/40 transition-all duration-1000 ease-out delay-1000 ${
                     visibleSections.has("hero")
                       ? "opacity-100 scale-100"
                       : "opacity-0 scale-75"
@@ -293,9 +340,11 @@ export default function Home() {
                 ].map((lang, i) => (
                   <div
                     key={i}
-                    className="min-w-max px-4 py-2 bg-card rounded-lg shadow-md hover:scale-105 transition-transform"
+                    className="min-w-max px-4 py-2 bg-card rounded-lg shadow-md"
                   >
-                    {lang}
+                    <span className="inline-block transition-transform transition-shadow duration-300  hover:text-white hover:drop-shadow-[0_0_3px_rgba(255,255,255,0.8)]">
+                      {lang}
+                    </span>
                   </div>
                 ))}
               </div>
