@@ -585,7 +585,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 text-center text-muted-foreground text-sm">
-            &copy; {new Date().getFullYear()} BYTEBATTLE. All rights reserved.
+            &copy; {new Date().getFullYear()} XDream-Dev. All rights reserved.
           </div>
         </div>
       </footer>
