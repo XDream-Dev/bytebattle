@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Brain, Zap, Trophy, BarChart3 } from "lucide-react";
+import { Brain, Zap, Trophy, BarChart3, Menu, X } from "lucide-react";
 
 export default function Home() {
   const [visibleSections, setVisibleSections] = useState<Set<string>>(
@@ -33,39 +33,115 @@ export default function Home() {
     };
   }, []);
 
+  const [visible, setVisible] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b">
+      <header
+        className={`fixed top-0 left-0 w-full z-50 border-b bg-background/80 backdrop-blur transition-all duration-700 ease-out ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
+        }`}
+      >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Brain className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">BYTEBATTLE</h1>
+            <Brain className="h-8 w-8 text-primary animate-pulse" />
+            <h1 className="text-2xl font-bold text-primary">BYTEBATTLE</h1>
           </div>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/" className="font-medium hover:text-primary">
-              Home
-            </Link>
-            <Link href="/categories" className="font-medium hover:text-primary">
-              Languages
-            </Link>
-            <Link
-              href="/leaderboard"
-              className="font-medium hover:text-primary"
-            >
-              Leaderboard
-            </Link>
-            <Link href="/profile" className="font-medium hover:text-primary">
-              Profile
-            </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex gap-6 font-medium">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/categories", label: "Languages" },
+              { href: "/leaderboard", label: "Leaderboard" },
+              { href: "/profile", label: "Profile" },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="relative hover:text-primary transition"
+              >
+                {label}
+                <span
+                  className="
+              absolute left-0 bottom-0 w-0 h-[2px] bg-primary
+              transition-all duration-300 ease-in-out
+              hover:w-full
+            "
+                />
+              </Link>
+            ))}
           </nav>
-          <div className="flex gap-2">
+
+          {/* Desktop Login Button */}
+          <div className="hidden md:flex gap-2">
             <Link href="/login" passHref>
               <Button variant="outline" as="a">
                 Login
               </Button>
             </Link>
           </div>
+
+          {/* Mobile menu toggle */}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="md:hidden px-4 pb-4">
+            <nav className="flex flex-col gap-3 font-medium">
+              <Link
+                href="/"
+                onClick={() => setMobileOpen(false)}
+                className="hover:text-primary"
+              >
+                Home
+              </Link>
+              <Link
+                href="/categories"
+                onClick={() => setMobileOpen(false)}
+                className="hover:text-primary"
+              >
+                Languages
+              </Link>
+              <Link
+                href="/leaderboard"
+                onClick={() => setMobileOpen(false)}
+                className="hover:text-primary"
+              >
+                Leaderboard
+              </Link>
+              <Link
+                href="/profile"
+                onClick={() => setMobileOpen(false)}
+                className="hover:text-primary"
+              >
+                Profile
+              </Link>
+              <Link href="/login" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" className="w-full">
+                  Login
+                </Button>
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">
